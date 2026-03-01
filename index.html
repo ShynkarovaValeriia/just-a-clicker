@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="keywords" content="clicker, game, speed">
+        <meta name="description" content="just a clicker game">
+        <!-- <meta http-equiv="refresh" content="30"> -->
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>just a clicker</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body>
+        <div class="home">
+            <div class="stopwatch">
+                <p><span id="seconds">00</span>:<span id="tens">00</span></p>
+            </div>
+            <div class="images">
+                <img id="cats_images" src="images/cats.webp" alt="cats images">
+            </div>
+            <div class="count_clicks">
+                <p>0 / 50</p>
+            </div>
+            <div class="button">
+                <button id="click_button">Click me</button>
+            </div>
+            <div id="game_over_screen" class="game-over">
+                <div class="game-over-content">
+                    <img src="images/funny_end.gif" alt="funny result">
+                    <h2 id="final_result"></h2>
+                    <button id="restart_button">Try Again</button>
+                </div>
+            </div>
+        </div>
+        <script src="script.js"></script>
+    </body>
+</html>
