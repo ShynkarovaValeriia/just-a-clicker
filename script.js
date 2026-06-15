@@ -16,25 +16,12 @@ const restartButton = document.getElementById("restart_button");
 const catImage = document.getElementById("cats_images");
 
 const mainImages = [
-    "images/main_game/“thoses who look only in the past or present are certain to miss the future”.webp",
-    "images/main_game/cats.webp",
-    "images/main_game/завантаження (65).jfif",
-    "images/main_game/завантаження (66).jfif",
-    "images/main_game/завантаження (68).jfif",
-    "images/main_game/завантаження (69).jfif",
-    "images/main_game/завантаження (71).jfif",
-    "images/main_game/завантаження.webp"
+    "images/main_game/1.gif",
+    "images/main_game/2.jpg"
 ];
 
 const gameOverImages = [
-    "images/game_over/¿Cariño o lástima_ Descubre por qué sigue contigo.jfif",
-    "images/game_over/40+ Pics Without Context That Get Funnier and Funnier the Longer You Look at Them.webp",
-    "images/game_over/240 Best Cat Memes and Images For Funny Captions - Page 3 of 11 - LittleNivi_Com.jfif",
-    "images/game_over/Absolute meowl.webp",
-    "images/game_over/Adios.jfif",
-    "images/game_over/Barış.jfif",
-    "images/game_over/funny_end.gif",
-    "images/game_over/завантаження (71) – копія.jfif"
+    "images/game_over/34.webp"
 ];
 
 function startTimer() {
@@ -59,7 +46,7 @@ button.addEventListener("pointerdown", function () {
     clicks++;
     counter.textContent = clicks + " / 50";
 
-    if (clicks % 5 === 0) {
+    if (clicks % 4 === 0) {
     catImage.src = getRandomImage(mainImages);
     }
 
@@ -80,7 +67,7 @@ function showGameOver() {
     let totalTime = seconds + "." + (tens < 10 ? "0" + tens : tens);
 
     finalResult.textContent =
-        "Поздравляю! Ты потратил " + totalTime + " секунд зря!";
+        "Babayla zor yarışırlar! " + totalTime + " saniyeni boşuna harcadın!";
 
     gameOverScreen.style.display = "flex";
 }
