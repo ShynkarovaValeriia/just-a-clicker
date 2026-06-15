@@ -23,9 +23,8 @@ const mainImages = [
     "images/main_game/завантаження (68).jfif",
     "images/main_game/завантаження (69).jfif",
     "images/main_game/завантаження (71).jfif",
-    "images/main_game/завантаження.webp",
+    "images/main_game/завантаження.webp"
 ];
-
 
 const gameOverImages = [
     "images/game_over/¿Cariño o lástima_ Descubre por qué sigue contigo.jfif",
@@ -60,7 +59,7 @@ button.addEventListener("pointerdown", function () {
     clicks++;
     counter.textContent = clicks + " / 50";
 
-    if (clicks % 10 === 0) {
+    if (clicks % 5 === 0) {
     catImage.src = getRandomImage(mainImages);
     }
 
