@@ -51,7 +51,7 @@ function showGameOver() {
     gameOverScreen.style.display = "flex";
 }
 
-restartButton.addEventListener("click", function () {
+restartButton.addEventListener("pointerdown", function () {
 
     seconds = 0;
     tens = 0;
