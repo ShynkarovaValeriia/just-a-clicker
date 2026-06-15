@@ -25,7 +25,7 @@ function startTimer() {
     tensSpan.textContent = tens < 10 ? "0" + tens : tens;
 }
 
-button.addEventListener("click", function () {
+button.addEventListener("pointerdown", function () {
 
     if (!timerStarted) {
         interval = setInterval(startTimer, 10);
