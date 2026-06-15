@@ -67,3 +67,27 @@ restartButton.addEventListener("pointerdown", function () {
     button.disabled = false;
     gameOverScreen.style.display = "none";
 });
+
+document.addEventListener("gesturestart", function (e) {
+    e.preventDefault();
+});
+
+document.addEventListener("gesturechange", function (e) {
+    e.preventDefault();
+});
+
+document.addEventListener("gestureend", function (e) {
+    e.preventDefault();
+});
+
+let lastTouchEnd = 0;
+
+document.addEventListener("touchend", function (event) {
+    let now = new Date().getTime();
+
+    if (now - lastTouchEnd <= 300) {
+        event.preventDefault();
+    }
+
+    lastTouchEnd = now;
+}, false);

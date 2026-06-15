@@ -6,12 +6,15 @@
     box-sizing: border-box;
 }
 
-html, body {
-    height: 100%;
-    touch-action: manipulation;
+html,
+body,
+.home,
+.game-over,
+.game-over-content {
+    touch-action: none;
+    -ms-touch-action: none;
     -webkit-user-select: none;
     user-select: none;
-    -webkit-touch-callout: none;
 }
 
 body {
@@ -117,6 +120,8 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
+    touch-action: none;
+    overscroll-behavior: none;
 }
 
 .game-over-content {
