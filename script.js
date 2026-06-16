@@ -4,8 +4,12 @@ let clicks = 0;
 let interval = null;
 let timerStarted = false;
 
+
+// ===== ЭЛЕМЕНТЫ =====
+
 const secondsSpan = document.getElementById("seconds");
 const tensSpan = document.getElementById("tens");
+
 const button = document.getElementById("click_button");
 const counter = document.querySelector(".count_clicks p");
 
@@ -14,6 +18,9 @@ const finalResult = document.getElementById("final_result");
 const restartButton = document.getElementById("restart_button");
 
 const catImage = document.getElementById("cats_images");
+
+
+// ===== КАРТИНКИ =====
 
 const mainImages = [
     "images/main_game/1.gif",
@@ -73,8 +80,9 @@ const mainImages = [
     "images/main_game/55.gif",
     "images/main_game/56.gif",
     "images/main_game/57.gif",
-    "images/main_game/58.gif",
+    "images/main_game/58.gif"
 ];
+
 
 const gameOverImages = [
     "images/game_over/1.jpg",
@@ -114,6 +122,27 @@ const gameOverImages = [
     "images/game_over/35.gif"
 ];
 
+
+// ===== ИСПОЛЬЗОВАННЫЕ КАРТИНКИ =====
+
+let usedMainImages = [];
+let usedGameOverImages = [];
+
+
+// ===== ЗАПУСК ИГРЫ =====
+
+window.onload = function () {
+
+    catImage.src = getRandomImage(
+        mainImages,
+        usedMainImages
+    );
+
+};
+
+
+// ===== ТАЙМЕР =====
+
 function startTimer() {
     tens++;
 
@@ -126,6 +155,9 @@ function startTimer() {
     tensSpan.textContent = tens < 10 ? "0" + tens : tens;
 }
 
+
+// ===== КЛИК ПО КНОПКЕ =====
+
 button.addEventListener("pointerdown", function () {
 
     if (!timerStarted) {
@@ -135,23 +167,26 @@ button.addEventListener("pointerdown", function () {
 
     clicks++;
     counter.textContent = clicks + " / 50";
-
+    
     if (clicks % 4 === 0) {
-    catImage.src = getRandomImage(mainImages);
+        catImage.src = getRandomImage(mainImages, usedMainImages);
     }
 
     if (clicks === 50) {
         clearInterval(interval);
-        showGameOver();
         button.disabled = true;
+        showGameOver();
     }
 });
+
+
+// ===== ОКНО РЕЗУЛЬТАТА =====
 
 function showGameOver() {
 
     const resultImage = document.querySelector(".game-over-content img");
 
-    resultImage.src = getRandomImage(gameOverImages);
+    resultImage.src = getRandomImage(gameOverImages, usedGameOverImages);
 
 
     let totalTime = seconds + "." + (tens < 10 ? "0" + tens : tens);
@@ -162,6 +197,8 @@ function showGameOver() {
     gameOverScreen.style.display = "flex";
 }
 
+
+// ===== РЕСТАРТ =====
 restartButton.addEventListener("pointerdown", function () {
 
     seconds = 0;
@@ -177,7 +214,15 @@ restartButton.addEventListener("pointerdown", function () {
 
     button.disabled = false;
     gameOverScreen.style.display = "none";
+
+    usedMainImages = [];
+    usedGameOverImages = [];
+
+    catImage.src = getRandomImage(mainImages, usedMainImages);
 });
+
+
+// ===== ЗАПРЕТ ЖЕСТОВ НА ТЕЛЕФОНЕ =====
 
 document.addEventListener("gesturestart", function (e) {
     e.preventDefault();
@@ -191,6 +236,9 @@ document.addEventListener("gestureend", function (e) {
     e.preventDefault();
 });
 
+
+// защита от двойного нажатия
+
 let lastTouchEnd = 0;
 
 document.addEventListener("touchend", function (event) {
@@ -203,17 +251,27 @@ document.addEventListener("touchend", function (event) {
     lastTouchEnd = now;
 }, false);
 
-let lastImage = "";
 
-function getRandomImage(images) {
+// ===== СЛУЧАЙНАЯ КАРТИНКА БЕЗ ПОВТОРОВ =====
+function getRandomImage(images, usedList) {
 
-    let newImage;
+    if (usedList.length === images.length) {
+        usedList.length = 0;
+    }
 
-    do {
-        newImage = images[Math.floor(Math.random() * images.length)];
-    } while (newImage === lastImage);
 
-    lastImage = newImage;
+    let availableImages = images.filter(
+        img => !usedList.includes(img)
+    );
 
-    return newImage;
+
+    let randomImage = availableImages[
+        Math.floor(Math.random() * availableImages.length)
+    ];
+
+
+    usedList.push(randomImage);
+
+
+    return randomImage;
 }
