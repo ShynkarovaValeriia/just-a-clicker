@@ -21,7 +21,8 @@ const mainImages = [
 ];
 
 const gameOverImages = [
-    "images/game_over/34.webp"
+    "images/game_over/1.jpg",
+    "images/game_over/2.jpg"
 ];
 
 function startTimer() {
@@ -112,11 +113,6 @@ document.addEventListener("touchend", function (event) {
 
     lastTouchEnd = now;
 }, false);
-
-function getRandomImage(images) {
-    const randomIndex = Math.floor(Math.random() * images.length);
-    return images[randomIndex];
-}
 
 let lastImage = "";
 
