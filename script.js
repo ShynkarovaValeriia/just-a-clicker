@@ -20,6 +20,19 @@ const restartButton = document.getElementById("restart_button");
 const catImage = document.getElementById("cats_images");
 
 
+// ===== ЗВУКИ =====
+
+function playClickSound() {
+    let sound = new Audio("sounds/click.mp3");
+    sound.volume = 0.5;
+    sound.play().catch(() => {});
+}
+
+const resultSound = new Audio("sounds/result.mp3");
+
+resultSound.volume = 0.7;
+
+
 // ===== КАРТИНКИ =====
 
 const mainImages = [
@@ -160,6 +173,8 @@ function startTimer() {
 
 button.addEventListener("pointerdown", function () {
 
+    playClickSound();
+
     if (!timerStarted) {
         interval = setInterval(startTimer, 10);
         timerStarted = true;
@@ -184,6 +199,9 @@ button.addEventListener("pointerdown", function () {
 
 function showGameOver() {
 
+    resultSound.currentTime = 0;
+    resultSound.play();
+
     const resultImage = document.querySelector(".game-over-content img");
 
     resultImage.src = getRandomImage(gameOverImages, usedGameOverImages);
@@ -191,8 +209,8 @@ function showGameOver() {
 
     let totalTime = seconds + "." + (tens < 10 ? "0" + tens : tens);
 
-    finalResult.textContent =
-        "Babayla zor yarışırlar! " + totalTime + " saniyeni boşuna harcadın!";
+    finalResult.innerHTML =
+        "Babayla zor yarışırlar!<br>" + totalTime + " saniyeni boşuna harcadın!";
 
     gameOverScreen.style.display = "flex";
 }
